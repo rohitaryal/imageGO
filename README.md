@@ -100,5 +100,6 @@ Contribution are welcome but ensure to pass all test cases and follow existing c
 
 ## Disclaimer
 
+Bare minimum effort has been put into this project as this is just re-writing. For better support please use [imagefx-api](https://github.com/rohitaryal/imageFX-api)
 This project demonstrates usage of Google's private API but is not affiliated with Google. Use at your own risk.
 
