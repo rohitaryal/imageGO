@@ -3,7 +3,7 @@ name: Build and Release
 on:
   push:
     tags:
-      - 'v*.*.*' # Trigger on version tags like v1.0.0
+      - "v*.*.*" # Trigger on version tags like v1.0.0
 
 permissions:
   contents: write # Needed to create releases and upload assets
@@ -34,7 +34,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.22.2' # From your go.mod file
+          go-version: "1.22.2" # From your go.mod file
 
       - name: Build binary
         env:
@@ -42,14 +42,14 @@ jobs:
           GOARCH: ${{ matrix.arch }}
         run: |
           echo "Building for $GOOS/$GOARCH..."
-          go build -v -trimpath -ldflags="-s -w" -o ${{ matrix.binary_name }} ./cmd/imageGO
+          go build -v -trimpath -ldflags="-s -w" -o ${{ matrix.binary_name }} ./cmd/imagego
           echo "Built ${{ matrix.binary_name }}"
 
       - name: Upload binary artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.binary_name }} # Artifact name will be the binary name
-          path: ${{ matrix.binary_name }}  # Path to the file to upload
+          path: ${{ matrix.binary_name }} # Path to the file to upload
 
   create-release:
     name: Create GitHub Release
@@ -61,8 +61,9 @@ jobs:
       - name: Download all build artifacts
         uses: actions/download-artifact@v4
         with:
-          path: release-assets # All artifacts will be downloaded into subdirectories here
-                               # e.g., release-assets/imagego-linux-amd64/imagego-linux-amd64
+          path:
+            release-assets # All artifacts will be downloaded into subdirectories here
+            # e.g., release-assets/imagego-linux-amd64/imagego-linux-amd64
 
       - name: List downloaded artifacts (for debugging)
         run: |
@@ -84,3 +85,4 @@ jobs:
             release-assets/imagego-darwin-arm64/imagego-darwin-arm64
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
