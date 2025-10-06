@@ -96,6 +96,7 @@ func main() {
 			}
 		}
 	} else if *caption {
+		// TODO: Build this
 	} else if *fetch {
 		if strings.TrimSpace(*mediaID) == "" {
 			fmt.Println("Media ID is missing.")
